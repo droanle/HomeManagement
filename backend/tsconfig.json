@@ -11,7 +11,13 @@
     "paths": {
       "@global": ["./global.ts"],
       "@/*": ["./src/*"],
-      "@Routes/*": ["./src/routes/*"]
+      "@Routes/*": ["./src/routes/*"],
+      "@Models/*": ["./src/models/*"],
+      "@Utils/*": ["./src/utils/*"],
+      "@Middlewares/*": ["./src/middlewares/*"],
+      "@Repositories/*": ["./src/repositories/*"],
+      "@Controllers/*": ["./src/controllers/*"],
+      "@Handlers/*": ["./src/handlers/*"]
     }
   },
   "include": ["src", "server.ts"],

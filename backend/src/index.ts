@@ -1,9 +1,7 @@
 import { Application, json } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-
 import helmet from "helmet";
-
 import Routes from "@Routes/index";
 
 export default class Server {

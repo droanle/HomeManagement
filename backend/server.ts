@@ -1,15 +1,23 @@
-import * as dotenv from "dotenv";
-dotenv.config();
-import express from "express";
-import { Application } from "express";
+import { config as dotenv } from "dotenv";
+dotenv();
 
-import Server from "@/index";
-
+import express, { Application } from "express";
 const app: Application = express();
-const server: Server = new Server(app);
 const port: number = process.env.APP_PORT
   ? parseInt(process.env.APP_PORT, 10)
   : 3000;
+
+import Server from "@/index";
+new Server(app);
+
+import { Session } from "@/utils/types/session";
+declare global {
+  namespace Express {
+    export interface Request {
+      session?: Session | undefined;
+    }
+  }
+}
 
 app
   .listen(port, "localhost", function () {
