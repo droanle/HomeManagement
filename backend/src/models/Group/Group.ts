@@ -1,15 +1,18 @@
 import { DB } from "@global";
 import { DataTypes as DT, Model } from "sequelize";
+import GroupMembers from "./GroupMembers";
 
+// Model
 export default class Group extends Model {
   declare id: number;
   declare name: string;
   declare createDate: Date;
   declare isPersonal: boolean;
   declare description: string;
-  protected groupMembers: Array<GroupMembers> = [];
+  declare groupMembers: Array<GroupMembers>;
 }
 
+// Scheme
 Group.init(
   {
     id: {
@@ -37,43 +40,5 @@ Group.init(
   {
     sequelize: DB,
     modelName: "groups",
-  }
-);
-
-class GroupMembers extends Model {
-  declare idUser: number;
-  declare idGroup: number;
-  declare level: number;
-}
-
-GroupMembers.init(
-  {
-    idUser: {
-      field: "id_user",
-      type: DT.INTEGER,
-      allowNull: false,
-      references: {
-        model: "users",
-        key: "id",
-      },
-    },
-    idGroup: {
-      field: "id_group",
-      type: DT.INTEGER,
-      allowNull: false,
-      references: {
-        model: "groups",
-        key: "id",
-      },
-    },
-    level: {
-      type: DT.FLOAT,
-      allowNull: false,
-      defaultValue: 0,
-    },
-  },
-  {
-    sequelize: DB,
-    modelName: "group_members",
   }
 );
